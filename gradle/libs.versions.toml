@@ -1,6 +1,5 @@
 [versions]
 agp = "9.4.1"
-kotlin = "2.4.0"
 junit = "4.13.2"
 espressoCore = "3.7.0"
 runner = "1.6.1"
@@ -24,8 +23,6 @@ androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecyc
 androidx-lifecycle-process = { group = "androidx.lifecycle", name = "lifecycle-process", version.ref = "lifecycle" }
 gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
 ads-mobile-sdk = { group = "com.google.android.libraries.ads.mobile.sdk", name = "ads-mobile-sdk", version.ref = "adsMobileSdk" }
-# Build classpath only: the Kotlin compiler that AGP's built-in Kotlin uses.
-kotlin-gradle-plugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 
 [plugins]
 android-library = { id = "com.android.library", version.ref = "agp" }

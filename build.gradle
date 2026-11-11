@@ -1,10 +1,4 @@
-buildscript {
-    dependencies {
-        // AGP 9 compiles Kotlin itself; this pins its compiler to the version the library was built with.
-        classpath(libs.kotlin.gradle.plugin)
-    }
-}
-
+// No Kotlin version pin: AGP's default Kotlin keeps the class metadata readable by apps on older Kotlin.
 plugins {
     alias(libs.plugins.android.library)
     id("maven-publish")
@@ -57,7 +51,7 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
 
 ext {
     PUBLISH_GROUP_ID = "com.github.tgo-libraries"
-    PUBLISH_VERSION = "v1.0.0"
+    PUBLISH_VERSION = "v1.0.1"
     PUBLISH_ARTIFACT_ID = "Google-Ads-NextGen"
     PUBLISH_DESCRIPTION = "An Android library for Google Mobile Ads (Next-Gen SDK)"
     PUBLISH_URL = "https://github.com/tgo-libraries/Google-Ads-NextGen"
