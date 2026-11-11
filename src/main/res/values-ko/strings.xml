@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tgo_app_name" translatable="false">NativeAdLoader</string>
+    <string name="tgo_loading" translatable="false">로딩 중</string>
+    <string name="tgo_loading_ad" translatable="false">광고 로딩 중</string>
+</resources>

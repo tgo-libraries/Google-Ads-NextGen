@@ -1,0 +1,126 @@
+plugins {
+    alias(libs.plugins.android.library)
+    id("maven-publish")
+}
+
+android {
+    namespace 'com.tgolibraries.ads'
+    compileSdk 36
+
+    defaultConfig {
+        minSdk 23
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    lint {
+        baseline = file("lint-baseline.xml")
+        resourcePrefix 'tgo_'
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+    compilerOptions {
+        jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11
+    }
+}
+
+//ext {
+//    PUBLISH_GROUP_ID = "com.github.tgo-libraries"
+//    PUBLISH_VERSION = "v1.0.0"
+//    PUBLISH_ARTIFACT_ID = "Google-Ads-NextGen"
+//    PUBLISH_DESCRIPTION = "An Android library for Google Mobile Ads (Next-Gen SDK)"
+//    PUBLISH_URL = "https://github.com/tgo-libraries/Google-Ads-NextGen"
+//    PUBLISH_LICENSE_NAME = "Apache 2.0 License"
+//    PUBLISH_LICENSE_URL = "https://www.apache.org/licenses/LICENSE-2.0"
+//    PUBLISH_DEVELOPER_ID = "teamdev072-bolt"
+//    PUBLISH_DEVELOPER_NAME = "tgo-libraries"
+//    PUBLISH_SCM_CONNECTION = "scm:git:ssh://github.com/tgo-libraries/Google-Ads-NextGen.git"
+//    PUBLISH_SCM_DEVELOPER_CONNECTION = "scm:git:ssh://github.com/tgo-libraries/Google-Ads-NextGen.git"
+//    PUBLISH_SCM_URL = "https://github.com/tgo-libraries/Google-Ads-NextGen"
+//}
+
+
+//version = project.ext.PUBLISH_VERSION
+//group = project.ext.PUBLISH_GROUP_ID
+
+//afterEvaluate {
+//    publishing {
+//        publications {
+//            // Creates a Maven publication called "release".
+//            create("release", MavenPublication) {
+//                // Applies the component for the release build variant.
+//                from components["release"]
+//
+//                // Use the properties from the `ext` block
+//                groupId = project.ext.PUBLISH_GROUP_ID
+//                artifactId = project.ext.PUBLISH_ARTIFACT_ID
+//                version = project.ext.PUBLISH_VERSION
+//
+//                // Add additional metadata to the POM
+//                pom {
+//                    name.set(project.ext.PUBLISH_ARTIFACT_ID)
+//                    description.set(project.ext.PUBLISH_DESCRIPTION)
+//                    url.set(project.ext.PUBLISH_URL)
+//
+//                    licenses {
+//                        license {
+//                            name.set(project.ext.PUBLISH_LICENSE_NAME)
+//                            url.set(project.ext.PUBLISH_LICENSE_URL)
+//                        }
+//                    }
+//
+//                    developers {
+//                        developer {
+//                            id.set(project.ext.PUBLISH_DEVELOPER_ID)
+//                            name.set(project.ext.PUBLISH_DEVELOPER_NAME)
+//                        }
+//                    }
+//
+//                    scm {
+//                        connection.set(project.ext.PUBLISH_SCM_CONNECTION)
+//                        developerConnection.set(project.ext.PUBLISH_SCM_DEVELOPER_CONNECTION)
+//                        url.set(project.ext.PUBLISH_SCM_URL)
+//                    }
+//                }
+//            }
+//        }
+//    }
+//}
+
+dependencies {
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation libs.androidx.appcompat
+    testImplementation libs.junit
+    implementation libs.material
+    androidTestImplementation libs.androidx.test.runner
+    androidTestImplementation libs.androidx.espresso.core
+    // GMA Next-Gen SDK. It replaces play-services-ads, which must not be in the same app.
+    implementation libs.ads.mobile.sdk
+    implementation libs.androidx.constraintlayout
+    implementation libs.sdp.android
+
+    //lifecycle
+    implementation libs.androidx.lifecycle.runtime.ktx
+    implementation libs.androidx.lifecycle.process
+
+    implementation libs.gson
+}

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tgo_app_name" translatable="false">NativeAdLoader</string>
+    <string name="tgo_loading" translatable="false">Laden</string>
+    <string name="tgo_loading_ad" translatable="false">Advertentie laden</string>
+</resources>
