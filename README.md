@@ -16,6 +16,8 @@ Add the dependency:
 implementation "com.github.tgo-libraries:Google-Ads-NextGen:v1.0.0"
 ```
 
+This library uses the Google Mobile Ads Next-Gen SDK (`com.google.android.libraries.ads.mobile.sdk`), which replaces `play-services-ads`. Don't add `play-services-ads` to the same app.
+
 ## License
 
 Apache License 2.0. See [LICENSE](LICENSE).
