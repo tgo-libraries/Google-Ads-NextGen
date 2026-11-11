@@ -3,6 +3,7 @@ package com.tgolibraries.ads
 import android.os.Bundle
 import android.util.Log
 import com.google.android.libraries.ads.mobile.sdk.common.AdValue
+import java.util.Locale
 
 fun interface AdRevenueListener {
     fun onAdPaid(eventName: String, params: Bundle)
@@ -42,9 +43,7 @@ object AdRevenueTracker {
         logTag: String
     ) {
         val (revenue, params) = buildImpressionParams(
-            adValue = adValue,
-            adUnitId = adUnitId,
-            adFormat = adFormat
+            adValue = adValue
         )
         val adjustedRevenue = params.getDouble("value")
         Log.d(
@@ -59,9 +58,7 @@ object AdRevenueTracker {
     }
 
     fun buildImpressionParams(
-        adValue: AdValue,
-        adUnitId: String,
-        adFormat: String
+        adValue: AdValue
     ): Pair<Double, Bundle> {
         var revenue = adValue.valueMicros / 1_000_000.0
         try {
@@ -70,15 +67,11 @@ object AdRevenueTracker {
             e.printStackTrace()
         }
 
+        val revenueString = String.format(Locale.US, "%.6f", revenue)
+
         val params = Bundle().apply {
-            putDouble("custom_ad_value", revenue)
+            putDouble("value", revenueString.toDouble())
             putString("currency", adValue.currencyCode)
-            putString("ad_platform", "Custom")
-            putString("ad_source", "Custom")
-            putString("ad_unit_name", adUnitId)
-            putString("ad_format", adFormat)
-            putString("PriceAccuracy", "BID")
-            putString("revenue_precision", adValue.precisionType.toString())
         }
 
         return revenue to params

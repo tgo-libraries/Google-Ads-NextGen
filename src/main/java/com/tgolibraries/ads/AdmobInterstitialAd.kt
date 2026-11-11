@@ -633,16 +633,15 @@ class AdmobInterstitialAd private constructor() {
             }
 
             override fun onAdDismissedFullScreenContent() {
-                runOnMainThread {
-                    callBack.invoke(true)
-                    unblockTouches()
-                }
                 splashInterstitialAd = null
                 shouldshowAd = false
                 GlobalState.isInterShowing = false
                 AdmobAppOpenAd.shouldshowAppOpen()
                 adMessage = ""
-
+                runOnMainThread {
+                    callBack.invoke(true)
+                    unblockTouches()
+                }
             }
 
             override fun onAdShowedFullScreenContent() {
